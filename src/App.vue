@@ -14,6 +14,14 @@
       {{name}} can't vote
     </h1>
   </div>
+
+  <div class="my-3">
+    <input type="text" v-model="inputFruit" @keyup.enter="addFruit">
+<!--    <button @click="addFruit">Add</button>-->
+    <ul>
+      <li v-for="(fruit,index) in fruits" v-bind:key="index">{{ fruit }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -23,7 +31,10 @@ export default {
       name : " kabyar",
       age : 8,
       gender : "female",
-      inputName : ""
+      inputName : "",
+      fruits : ["mango","orange","apple"],
+      inputFruit:'',
+
     }
   },
   computed: {
@@ -41,6 +52,16 @@ export default {
     changeName(){
       this.name = this.inputName
       this.inputName = null
+    },
+    addFruit(){
+      //အပေါ်ကနေထည့်တာ
+      this.fruits=[this.inputFruit,...this.fruits]
+      // this.fruits.unshift(this.inputFruit)
+
+      //အောက်ကနေထည့်တာ
+      // this.fruits=[...this.fruits,this.inputFruit]
+      // this.fruits.push(this.inputFruit)
+      this.inputFruit=null
     }
   },
 }
