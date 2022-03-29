@@ -5,6 +5,15 @@
   </div>
   <input type="text" v-model="inputName">
   <button v-on:click="changeName">Click</button>
+
+  <div class="my-4">
+    <h1 v-if="age>=18">
+      {{name}} can vote
+    </h1>
+    <h1 v-else>
+      {{name}} can't vote
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -12,7 +21,7 @@ export default {
   data() {
     return {
       name : " kabyar",
-      age : 18,
+      age : 8,
       gender : "female",
       inputName : ""
     }
