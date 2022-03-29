@@ -3,8 +3,8 @@
     <h1>My name is {{ name.toUpperCase() }} and {{ age }} year{{age>1 ? "s":""}} old
     {{pronoun}} was born in {{birthYear}}</h1>
   </div>
-  <input type="text" v-model="inputName">
-  <button v-on:click="changeName">Click</button>
+  <input  type="text" v-model="inputName">
+  <button class="btn btn-primary" v-on:click="changeName">Click</button>
 
   <div class="my-4">
     <h1 v-if="age>=18">
@@ -16,11 +16,17 @@
   </div>
 
   <div class="my-3">
-    <input type="text" v-model="inputFruit" @keyup.enter="addFruit">
-<!--    <button @click="addFruit">Add</button>-->
-    <ul>
-      <li v-for="(fruit,index) in fruits" v-bind:key="index">{{ fruit }}</li>
-    </ul>
+    <div class="row g-2">
+      <div class="col-6">
+        <input type="text" class="form-control" v-model="inputFruit" @keyup.enter="addFruit">
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary"  @click="addFruit">Add</button>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item" v-for="(fruit,index) in fruits" v-bind:key="index">{{ fruit }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -54,6 +60,13 @@ export default {
       this.inputName = null
     },
     addFruit(){
+
+      //တခုခုထဲ့ပီးenterမှထဲ့မယ် plain ဆိုမရ
+      if (!this.inputFruit){
+        console.log("plain")
+        return;
+      }
+
       //အပေါ်ကနေထည့်တာ
       this.fruits=[this.inputFruit,...this.fruits]
       // this.fruits.unshift(this.inputFruit)
@@ -67,6 +80,9 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+$primary: violet;
+$font-family-sans-serif:'Hurricane', cursive;
+  @import "~bootstrap/scss/bootstrap";
 </style>
